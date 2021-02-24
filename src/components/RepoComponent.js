@@ -1,6 +1,6 @@
 import React, { useState }  from 'react';
 import { Octokit } from "@octokit/core";
-import RepoContributorsComponent from './RepoContributorsComponent'
+import RepoContributorComponent from './RepoContributorsComponent'
 
 
 function  RepoComponent ({ name, description, language, pushed_at, fork }) {
@@ -17,7 +17,6 @@ function  RepoComponent ({ name, description, language, pushed_at, fork }) {
       owner: "getndazn",
       repo: name
     })
-    console.log(result.data);
     setContributors(result.data)
   } 
 
@@ -30,7 +29,8 @@ function  RepoComponent ({ name, description, language, pushed_at, fork }) {
   }
 
   return (
-    <div>
+    <div className='container'>
+      <hr/>
       <ul>
         <li> Repo name: {name}</li>
         <li>Description: {description}</li>
@@ -38,12 +38,12 @@ function  RepoComponent ({ name, description, language, pushed_at, fork }) {
         <li>Last update: {pushed_at.substring(0,10)}</li>
         {fork ? <li>It is fork</li> : null}
       </ul>
-      <button onClick={() => getData()}>See contributors</button>
+      <button className='button' onClick={() => getData()}>See contributors</button>
 
       <div>
         { (contributors.length > 0 && show)
           ?  contributors.map(({id, ...categoriesProps}) => (
-            < RepoContributorsComponent key={id} {...categoriesProps} />)) 
+            < RepoContributorComponent key={id} {...categoriesProps} />)) 
           : null
         }
       </div>

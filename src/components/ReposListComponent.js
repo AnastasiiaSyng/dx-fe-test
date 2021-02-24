@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import RepoComponent from './RepoComponent'
 
 
-function  ReposListComponent () {
+function  ReposListComponent() {
 
   const token = process.env.REACT_APP_API_KEY
 
@@ -18,7 +18,6 @@ function  ReposListComponent () {
     const result =  await octokit.request('GET /orgs/{org}/repos', {
       org: 'getndazn'
     })
-    console.log(result.data);
     setData(result.data);
   } 
 
@@ -35,4 +34,3 @@ function  ReposListComponent () {
 
 export default ReposListComponent
 
-// cb0c18cbbb904924a0c7e3ad0234ce662a31a353
