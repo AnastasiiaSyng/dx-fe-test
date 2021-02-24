@@ -2,9 +2,13 @@ import { Octokit } from "@octokit/core";
 import React, { useState, useEffect } from 'react';
 import RepoComponent from './RepoComponent'
 
+
 function  ReposListComponent () {
+
+  const token = process.env.GIT_TOKEN_REACT_APP
+
   const [data, setData] = useState([]);
-  const octokit = new Octokit();
+  const octokit = new Octokit({ auth: token });
   
   useEffect( () => {
     GetGitHubRepos()
@@ -12,7 +16,7 @@ function  ReposListComponent () {
 
   async function GetGitHubRepos() {
     const result =  await octokit.request('GET /orgs/{org}/repos', {
-      org: 'getndazn',
+      org: 'getndazn'
     })
     console.log(result.data);
     setData(result.data);
@@ -28,4 +32,7 @@ function  ReposListComponent () {
 }
 
 
+
 export default ReposListComponent
+
+// cb0c18cbbb904924a0c7e3ad0234ce662a31a353

@@ -1,6 +1,22 @@
-import React from 'react';
+// import React, { useState, useEffect }  from 'react';
+// import { Octokit } from "@octokit/core";
 
-function  RepoComponent ({ name, description, language, pushed_at, fork }) {
+
+function  RepoComponent ({ name, description, language, pushed_at, fork, contributors_url }) {
+  // const [contributors, setContributors] = useState([]);
+  // const octokit = new Octokit();
+
+  //     useEffect( () => {
+  //       GetGitHubContributors()
+  //     }, [])
+
+  //     async function GetGitHubContributors() {
+  //       const result = await octokit.request('GET'+{contributors_url})
+  //       console.log(result);
+  //       return result 
+  //     } 
+
+
   return (
     <div>
       <ul>
@@ -15,3 +31,5 @@ function  RepoComponent ({ name, description, language, pushed_at, fork }) {
 }
 
 export default RepoComponent
+
+ 
