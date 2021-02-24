@@ -5,7 +5,7 @@ import RepoComponent from './RepoComponent'
 
 function  ReposListComponent () {
 
-  const token = process.env.GIT_TOKEN_REACT_APP
+  const token = process.env.REACT_APP_API_KEY
 
   const [data, setData] = useState([]);
   const octokit = new Octokit({ auth: token });
