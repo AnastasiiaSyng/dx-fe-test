@@ -1,25 +1,10 @@
-import { Octokit } from "@octokit/core";
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import ReposListComponent from './components/ReposListComponent'
 
 function  App () {
-  const [data, setData] = useState([]);
-  const octokit = new Octokit();
-  
-  useEffect( () => {
-    GetGitHubRepos()
-  }, [])
-
-  async function GetGitHubRepos() {
-    const result =  await octokit.request('GET /orgs/{org}/repos', {
-      org: 'getndazn',
-    })
-    console.log(result.data);
-    setData(result.data);
-  } 
-
-    return (
-        (data) ?  <p>it exist</p>: <p>not yet</p>
-    );
+  return (
+    < ReposListComponent />
+  )
 }
 
 export default App
