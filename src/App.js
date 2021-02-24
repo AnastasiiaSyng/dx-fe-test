@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { Octokit } from "@octokit/core";
+import React, { useState, useEffect } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function  App () {
+  const [data, setData] = useState([]);
+  const octokit = new Octokit();
+  
+  useEffect( () => {
+    GetGitHubRepos()
+  }, [])
+
+  async function GetGitHubRepos() {
+    const result =  await octokit.request('GET /orgs/{org}/repos', {
+      org: 'getndazn',
+    })
+    console.log(result.data);
+    setData(result.data);
+  } 
+
+    return (
+        (data) ?  <p>it exist</p>: <p>not yet</p>
+    );
 }
 
-export default App;
+export default App
+
